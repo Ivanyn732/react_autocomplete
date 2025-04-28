@@ -3,7 +3,8 @@ import { Person } from '../types/Person';
 
 interface Props {
   people: Person[];
-  onSelected: (person: Person | null) => void;
+  onSelected: (person: Person) => void;
+  onResetSelected: () => void;
   delay?: number;
   // setTitle: (title: string) => void;
 }
@@ -11,6 +12,7 @@ interface Props {
 export const Autocomplete: React.FC<Props> = ({
   people,
   onSelected,
+  onResetSelected,
   delay = 300,
   // setTitle,
 }) => {
@@ -49,10 +51,7 @@ export const Autocomplete: React.FC<Props> = ({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
-    if (e.target.value.trim() === '') {
-      onSelected(null);
-      // setTitle('No selected person');
-    }
+    onResetSelected(); // Скидаємо обраного користувача при зміні інпута
   };
 
   return (
