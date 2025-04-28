@@ -6,7 +6,6 @@ interface Props {
   onSelected: (person: Person) => void;
   onResetSelected: () => void;
   delay?: number;
-  // setTitle: (title: string) => void;
 }
 
 export const Autocomplete: React.FC<Props> = ({
@@ -14,7 +13,6 @@ export const Autocomplete: React.FC<Props> = ({
   onSelected,
   onResetSelected,
   delay = 300,
-  // setTitle,
 }) => {
   const [inputText, setInputText] = useState('');
   const [debouncedText, setDebouncedText] = useState('');
@@ -46,12 +44,11 @@ export const Autocomplete: React.FC<Props> = ({
     onSelected(person);
     setInputText(person.name);
     setIsDropdownOpen(false);
-    // setTitle(`${person.name} (${person.born} - ${person.died})`);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
-    onResetSelected(); // Скидаємо обраного користувача при зміні інпута
+    onResetSelected();
   };
 
   return (
