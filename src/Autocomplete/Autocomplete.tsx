@@ -57,8 +57,14 @@ export const Autocomplete: React.FC<Props> = ({
         type="text"
         value={inputText}
         onFocus={() => setIsDropdownOpen(true)}
-        onBlur={() => {
-          setTimeout(() => setIsDropdownOpen(false), 1000);
+        onBlur={e => {
+          const related = e.relatedTarget as HTMLElement | null;
+
+          if (related?.dataset.cy === 'suggestion-item') {
+            return;
+          }
+
+          setIsDropdownOpen(false);
         }}
         onChange={handleChange}
         className="input"
@@ -75,6 +81,7 @@ export const Autocomplete: React.FC<Props> = ({
                 className="dropdown-item"
                 data-cy="suggestion-item"
                 onClick={() => handleSelect(person)}
+                tabIndex={0}
               >
                 <p className="has-text-link">{person.name}</p>
               </div>
