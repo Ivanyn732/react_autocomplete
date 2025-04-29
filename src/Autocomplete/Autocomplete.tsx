@@ -80,7 +80,7 @@ export const Autocomplete: React.FC<Props> = ({
                 key={person.slug}
                 className="dropdown-item"
                 data-cy="suggestion-item"
-                onClick={() => handleSelect(person)}
+                onMouseDown={() => handleSelect(person)}
                 tabIndex={0}
               >
                 <p className="has-text-link">{person.name}</p>
